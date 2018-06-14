@@ -1,5 +1,4 @@
 from threading import Thread
-import numpy as np
 
 class recaman(Thread): 
     def __init__(self,s,q):
