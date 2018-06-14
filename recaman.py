@@ -23,11 +23,10 @@ class recaman(Thread):
         for i in range(self.q):
             self.eval(self.x[-1],i+2)
 
-
-
-rlist = [ recaman(n,20) for n in range(5) ]
-for r in rlist:
-    r.start()
-for r in rlist:
-    r.join()
-    print(r.x)
+if __name__=='__main__':
+    rlist = [ recaman(n,20) for n in range(5) ]
+    for r in rlist:
+        r.start()
+    for r in rlist:
+        r.join()
+        print(r.x)
