@@ -3,7 +3,8 @@ from threading import Thread
 class recaman(Thread): 
     def __init__(self,s,q):
         self.s = s # offset
-        self.x = [1+s] # list holds sequence starting at 1+s
+        self.x = [0]*(q+1)  #allocate list at start
+        self.x[0] = 1+s
         self.q = q # how may steps
         super(recaman, self).__init__()
     def eval(self,a,n):
@@ -17,10 +18,11 @@ class recaman(Thread):
                 pass
         else:
             b = a + ns
-        self.x.append(b)
+        return b
     def run(self):
         for i in range(self.q):
-            self.eval(self.x[-1],i+2)
+            n = i+2 # start at n=2
+            self.x[i+1]=self.eval(self.x[i],n)
 
 if __name__=='__main__':
     rlist = [ recaman(n,20) for n in range(5) ]
